@@ -1,0 +1,19 @@
+# Binaries
+bin/
+*.exe
+
+# Go
+*.test
+*.out
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+
+# Local config
+*.local
+CLAUDE.local.md
