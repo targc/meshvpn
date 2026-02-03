@@ -82,6 +82,10 @@ func (d *Device) configure() error {
 		return fmt.Errorf("failed to bring up interface: %w", err)
 	}
 
+	if err := exec.Command("ip", "link", "set", d.name, "mtu", "1400").Run(); err != nil {
+		return fmt.Errorf("failed to set MTU: %w", err)
+	}
+
 	return nil
 }
 

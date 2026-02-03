@@ -104,6 +104,10 @@ func (d *Device) configure() error {
 		return fmt.Errorf("failed to add route: %w", err)
 	}
 
+	if err := exec.Command("ifconfig", d.name, "mtu", "1400").Run(); err != nil {
+		return fmt.Errorf("failed to set MTU: %w", err)
+	}
+
 	return nil
 }
 
