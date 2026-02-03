@@ -6,6 +6,7 @@ VPN_KEY="${VPN_KEY:?VPN_KEY is required}"
 VPN_IP="${VPN_IP:-10.99.0.1/24}"
 
 echo "==> Downloading VPN client..."
+rm -f /usr/local/bin/meshvpn-client
 curl -fsSL -o /usr/local/bin/meshvpn-client "${CLIENT_URL:-https://example.com/client-linux}"
 chmod +x /usr/local/bin/meshvpn-client
 

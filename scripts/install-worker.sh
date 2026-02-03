@@ -8,6 +8,7 @@ K3S_MASTER="${K3S_MASTER:-10.99.0.1}"
 K3S_TOKEN="${K3S_TOKEN:?K3S_TOKEN is required}"
 
 echo "==> Downloading VPN client..."
+rm -f /usr/local/bin/meshvpn-client
 curl -fsSL -o /usr/local/bin/meshvpn-client "${CLIENT_URL:-https://example.com/client-linux}"
 chmod +x /usr/local/bin/meshvpn-client
 

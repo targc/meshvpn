@@ -5,6 +5,7 @@ VPN_KEY="${VPN_KEY:?VPN_KEY is required}"
 LISTEN="${LISTEN:-:51820}"
 
 echo "==> Downloading relay server..."
+rm -f /usr/local/bin/meshvpn-relay
 curl -fsSL -o /usr/local/bin/meshvpn-relay "${RELAY_URL:-https://example.com/relay-linux}"
 chmod +x /usr/local/bin/meshvpn-relay
 
