@@ -5,17 +5,17 @@ VPN_KEY="${VPN_KEY:?VPN_KEY is required}"
 LISTEN="${LISTEN:-:51820}"
 
 echo "==> Downloading relay server..."
-curl -fsSL -o /usr/local/bin/s2s-relay "${RELAY_URL:-https://example.com/relay-linux}"
-chmod +x /usr/local/bin/s2s-relay
+curl -fsSL -o /usr/local/bin/meshvpn-relay "${RELAY_URL:-https://example.com/relay-linux}"
+chmod +x /usr/local/bin/meshvpn-relay
 
 echo "==> Creating relay service..."
-cat > /etc/systemd/system/s2s-relay.service <<EOF
+cat > /etc/systemd/system/meshvpn-relay.service <<EOF
 [Unit]
-Description=S2S VPN Relay
+Description=MeshVPN Relay
 After=network.target
 
 [Service]
-ExecStart=/usr/local/bin/s2s-relay --listen "$LISTEN" --key "$VPN_KEY"
+ExecStart=/usr/local/bin/meshvpn-relay --listen "$LISTEN" --key "$VPN_KEY"
 Restart=always
 RestartSec=5
 
@@ -24,6 +24,6 @@ WantedBy=multi-user.target
 EOF
 
 systemctl daemon-reload
-systemctl enable --now s2s-relay
+systemctl enable --now meshvpn-relay
 
 echo "==> Done! Relay listening on $LISTEN"

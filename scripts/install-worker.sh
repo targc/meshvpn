@@ -8,17 +8,17 @@ K3S_MASTER="${K3S_MASTER:-10.99.0.1}"
 K3S_TOKEN="${K3S_TOKEN:?K3S_TOKEN is required}"
 
 echo "==> Downloading VPN client..."
-curl -fsSL -o /usr/local/bin/s2s-client "${CLIENT_URL:-https://example.com/client-linux}"
-chmod +x /usr/local/bin/s2s-client
+curl -fsSL -o /usr/local/bin/meshvpn-client "${CLIENT_URL:-https://example.com/client-linux}"
+chmod +x /usr/local/bin/meshvpn-client
 
 echo "==> Creating VPN service..."
-cat > /etc/systemd/system/s2s.service <<EOF
+cat > /etc/systemd/system/meshvpn.service <<EOF
 [Unit]
-Description=S2S VPN Client
+Description=MeshVPN Client
 After=network.target
 
 [Service]
-ExecStart=/usr/local/bin/s2s-client --relay "$RELAY_ADDR" --key "$VPN_KEY" --ip "$VPN_IP"
+ExecStart=/usr/local/bin/meshvpn-client --relay "$RELAY_ADDR" --key "$VPN_KEY" --ip "$VPN_IP"
 Restart=always
 RestartSec=5
 
@@ -27,7 +27,7 @@ WantedBy=multi-user.target
 EOF
 
 systemctl daemon-reload
-systemctl enable --now s2s
+systemctl enable --now meshvpn
 
 echo "==> Waiting for TUN device..."
 sleep 3
