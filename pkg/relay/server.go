@@ -8,8 +8,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/tar/s2s/pkg/crypto"
-	"github.com/tar/s2s/pkg/protocol"
+	"github.com/tar/meshvpn/pkg/crypto"
+	"github.com/tar/meshvpn/pkg/protocol"
 )
 
 type Node struct {

@@ -10,9 +10,9 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/tar/s2s/pkg/crypto"
-	"github.com/tar/s2s/pkg/protocol"
-	"github.com/tar/s2s/pkg/tun"
+	"github.com/tar/meshvpn/pkg/crypto"
+	"github.com/tar/meshvpn/pkg/protocol"
+	"github.com/tar/meshvpn/pkg/tun"
 )
 
 func main() {

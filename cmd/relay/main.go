@@ -8,8 +8,8 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/tar/s2s/pkg/crypto"
-	"github.com/tar/s2s/pkg/relay"
+	"github.com/tar/meshvpn/pkg/crypto"
+	"github.com/tar/meshvpn/pkg/relay"
 )
 
 func main() {
