@@ -6,6 +6,8 @@ VPN_KEY="${VPN_KEY:?VPN_KEY is required}"
 VPN_IP="${VPN_IP:?VPN_IP is required (e.g., 10.99.0.2/24)}"
 K3S_MASTER="${K3S_MASTER:-10.99.0.1}"
 K3S_TOKEN="${K3S_TOKEN:?K3S_TOKEN is required}"
+K3S_VERSION="${K3S_VERSION:-}"
+NODE_NAME="${NODE_NAME:-}"
 
 echo "==> Downloading VPN client..."
 rm -f /usr/local/bin/meshvpn-client
@@ -36,10 +38,11 @@ sleep 3
 NODE_IP=$(echo "$VPN_IP" | cut -d'/' -f1)
 
 echo "==> Installing k3s agent..."
-curl -sfL https://get.k3s.io | sh -s - agent \
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="$K3S_VERSION" sh -s - agent \
   --server "https://${K3S_MASTER}:6443" \
   --token "$K3S_TOKEN" \
   --node-ip "$NODE_IP" \
-  --flannel-iface tun0
+  --flannel-iface tun0 \
+  ${NODE_NAME:+--node-name "$NODE_NAME"}
 
 echo "==> Done!"
